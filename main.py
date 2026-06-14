@@ -80,7 +80,7 @@ def delete_expense(expense_id):
     cursor.execute('DELETE FROM expenses WHERE id = ?', (expense_id,))
     conn.commit()
     cursor.execute('SELECT sum(amount) FROM expenses')
-    new_total = round(cursor.fetchone()[0], 2 or 0, 2)
+    new_total = round(cursor.fetchone()[0] or 0, 2)    
     conn.close()
     return jsonify({"status": "success", 'total_spent': new_total})
  
