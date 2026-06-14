@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Crypto Page</title>
+    </head>
+    <body>
+        <div class="container">
+        <h2>Coins and their current prices</h2>
+        <table>
+            <tr>
+                <th>Coin</th>
+                <th>Current price</th>
+            </tr>
+            {% for price in prices %}
+            <tr>
+                <td> {{ price['coin'] }} </td>
+                <td> {{ price['price']}} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/" class="link">Back to Expenses</a>
+        </div>
+    </body>
+</html>

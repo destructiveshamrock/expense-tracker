@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <title>Error Screen</title>
+    </head>
+    <body>
+        <div class="container">
+            <h2>{{ error[0] }}<br><br>{{ error[1] }}</h2>
+            <form action="/" method="GET" class="add-form">
+                <button type="submit">Go back</button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,132 @@
+/* for body always do font-familt, background-color, color, and set margin/padding to 0 */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('https://t4.ftcdn.net/jpg/07/64/97/13/360_F_764971346_UWnWBvmGqINw3LyDFDH7RBYOWDN7Qij0.jpg');
+    background-repeat: no-repeat; /* Prevents tiling */
+    background-size: cover;       /* Optional: Makes image fill the whole screen */
+    background-attachment: fixed; /* Optional: makes image stay still when scrolling */
+    color: #333333;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* container is the section where all the elements are located in*/
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: rgb(14, 2, 90);
+    margin-bottom: 15px;
+    text-underline-position: below;
+    font-style: italic;
+}
+
+.add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.add-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #0026ff;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.add-form select {
+    flex: 1;
+    border-radius: 10px;
+    font-size: 15px;
+    border: 1px solid #0026ff;
+}
+
+.add-form button {
+    background-color: rgb(251, 255, 125);
+    font-size: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.add-form button:hover {
+    background-color: rgb(234, 212, 18);
+    font-style: italic;
+}
+
+.delete-form button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#input {
+    background-color: #7cdaff;
+}
+
+.delete-form button:hover {
+    background-color: #cc0000;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;  /* removes gaps between cell borders */
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;  /* subtle line between rows */
+}
+
+th {
+    background-color: rgb(14, 2, 90);  /* matches your h2 color */
+    color: white;
+}
+
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);  /* slight highlight on hover */
+}
+
+.box{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    width: max-content;
+    border: 1px solid #000000;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+#char-count {
+    display: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    width: max-content;
+    border: 1px solid #000000;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+.link {
+    background-color: #50cdff;
+    color: aliceblue;
+    border: 2px solid #0026ff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    display: block;         /* makes it sit on its own line */
+    width: max-content;
+}
