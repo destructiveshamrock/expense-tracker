@@ -95,8 +95,7 @@ def crypto():
         prices.append({'coin': coin, 'price': price})
     return render_template('crypto.html', prices=prices)
 
-
+init_db()
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True)
