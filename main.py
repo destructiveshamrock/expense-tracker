@@ -95,6 +95,10 @@ def crypto():
         prices.append({'coin': coin, 'price': price})
     return render_template('crypto.html', prices=prices)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 init_db()
 
 if __name__ == '__main__':

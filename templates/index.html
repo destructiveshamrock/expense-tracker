@@ -8,8 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <h2>Input new expense</h2>
-
+            <h2><br>Input new expense</h2>
         <!--Form for all 4 aspects (one of them has a drop-down menu)-->
         <form action="/add-expense" method="POST" class="add-form">
             <input type="text" name="name" placeholder="Spent on: " id="input">
@@ -25,7 +24,7 @@
             <button type="submit">Add Expense</button>
         </form>
 
-        <h2>List of all expenses</h2>
+        <h2><br>List of all expenses</h2>
         <table>
             <tr>                <!--Table row-->
                 <th>Item Bought</th>     <!--Table header cell-->
@@ -57,6 +56,7 @@
             </div>
             <p id="char-count"></p>
             <a href="/crypto" class="link">View Crypto Prices</a>
+            <a href="/about" class="link">About the author</a>
         </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>

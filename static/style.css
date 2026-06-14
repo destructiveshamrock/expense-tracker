@@ -22,10 +22,15 @@ body {
 
 h2 {
     text-align: center;
-    color: rgb(14, 2, 90);
+    color: rgb(23, 0, 169);
     margin-bottom: 15px;
+    text-decoration: underline;
     text-underline-position: below;
     font-style: italic;
+}
+
+p {
+    font-size: large;
 }
 
 .add-form {
@@ -122,10 +127,10 @@ tr:hover {
 
 .link {
     background-color: #50cdff;
-    color: aliceblue;
+    color: rgb(0, 0, 0);
     border: 2px solid #0026ff;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     margin-top: 15px;
     display: block;         /* makes it sit on its own line */
     width: max-content;
