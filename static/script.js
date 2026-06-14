@@ -17,6 +17,7 @@ let delete_buttons = document.querySelectorAll('.delete-form button')
 function attachDeleteListener(button) {
     button.addEventListener('click', function(event) {
         event.preventDefault()
+        if (!confirm('Confirm delete expense?')) return
         let id = button.dataset.id
         fetch(`/delete-expense/${id}`, {
             method: 'POST'
@@ -62,7 +63,7 @@ add_button.addEventListener('click', function(event) {
                 <td>${e.category}</td>
                 <td>${e.date}</td>
                 <td>
-                    <form class="delete-form" onsubmit="return confirm('Confirm delete expense')">
+                    <form class="delete-form">
                         <button type="button" data-id="${e.id}">Delete</button>
                     </form>
                 </td>

@@ -41,8 +41,7 @@
                 <td>{{ expense[4] }}</td>  
                 <td>
                     <form action="/delete-expense/{{ expense[0] }}" method="POST"
-                class="delete-form" 
-                onsubmit="return confirm('Confirm delete expense?')">
+                class="delete-form">
                     <button type="submit" data-id="{{ expense[0] }}">
                         Delete
                     </button>
