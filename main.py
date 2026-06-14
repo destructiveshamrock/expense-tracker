@@ -33,7 +33,7 @@ def index():
     cursor.execute('SELECT * FROM expenses')
     all_expenses = cursor.fetchall()
     cursor.execute('SELECT SUM(amount) FROM expenses')
-    total = round(cursor.fetchone()[0], 2) or 0  # 'or 0' handles the case when table is empty
+    total = round(cursor.fetchone()[0] or 0, 2)  # 'or 0' handles the case when table is empty
     conn.close()
     return render_template('index.html', expenses=all_expenses, total=total)
 
@@ -54,7 +54,7 @@ def add_expense():
                        (name, amount, category, date,))
         conn.commit()
         cursor.execute('SELECT sum(amount) FROM expenses')
-        new_total = round(cursor.fetchone()[0], 2) or 0
+        new_total = round(cursor.fetchone()[0] or 0, 2)
         conn.close()
         return jsonify({'status': 'success', 
                         'total_spent': new_total,
