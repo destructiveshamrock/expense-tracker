@@ -8,7 +8,18 @@
     </head>
     <body>
         <div class="container">
-            <h2><br>Input new expense</h2>
+            <div class="budget-section">
+                <div class="box" id="budget-display" style="display:inline;">Budget: ${{ budget }} </div>
+                <button id="edit-budget-btn" style="display:inline">Edit Budget</button>
+
+
+                <input type="number" id="budget-input" step="0.01" placeholder="Enter Budget..."
+                    style="display:none">
+                <button id="save-budget-button" style="display:none">Save Changes</button>
+
+            </div>
+
+            <h2>Input new expense</h2>
         <!--Form for all 4 aspects (one of them has a drop-down menu)-->
         <form action="/add-expense" method="POST" class="add-form">
             <input type="text" name="name" placeholder="Spent on: " id="input">
@@ -50,12 +61,17 @@
             </tr>
             {% endfor %}
         </table>
-            <div class="box">
+            <div class="box" style='display:inline' id="total-spent">
                 Total spent: ${{ total }}
             </div>
-            <p id="char-count"></p>
+
+            <div class="box" style="display:inline; margin-left: 10px;" id="net-money">
+                Net Money: ${{ budget - total }}
+            </div>
+            <div style="display:flex; gap: 15px; margin-top: 20px; justify-content: center;">
             <a href="/crypto" class="link">View Crypto Prices</a>
             <a href="/about" class="link">About the author</a>
+            </div>
         </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>

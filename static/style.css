@@ -33,13 +33,22 @@ p {
     font-size: large;
 }
 
+
 .add-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
+        display: flex;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+@media (max-width: 600px) {         /* media query - applies styles only when 
+                                    screen is below a certain width */
+    .add-form {
+        flex-direction: column;
+    }
 }
 
-.add-form input {
+
+.add-form input, #budget-input {
     flex: 1;
     padding: 10px;
     border: 1px solid #0026ff;
@@ -54,12 +63,16 @@ p {
     border: 1px solid #0026ff;
 }
 
-.add-form button {
+.add-form button, #edit-budget-btn, #save-budget-button {
     background-color: rgb(251, 255, 125);
     font-size: 15px;
     border-radius: 6px;
     cursor: pointer;
     padding: 10px 20px;
+}
+
+#edit-budget-btn {
+    margin-left: 15px;
 }
 
 .add-form button:hover {

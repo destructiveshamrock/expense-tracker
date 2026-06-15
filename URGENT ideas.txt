@@ -1,3 +1,13 @@
 can it also show the earnings and the amount left at the end of the day or month
-fix the javascript logic behind the delete button -- we have to refresh it manually
-make it somehow work on mobile the displays
+
+
+Budget feature plan (revised):
+
+Add a budget table with one row and one amount column
+Pass the budget value to index.html from your index route alongside expenses and total
+
+Add a budget display section in HTML above the form — Budget: $[amount] with an Edit button
+JavaScript — Edit button swaps display for an input field, Save button sends new value to Flask via fetch and updates the display
+New Flask POST route /update-budget that saves the value and returns JSON
+Add a Remaining: $[amount] display next to your total box, calculated as budget - total_spent
+JavaScript — recalculate remaining whenever an expense is added or deleted, turn red if negative or under 5% of budget

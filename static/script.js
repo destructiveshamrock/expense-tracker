@@ -12,8 +12,63 @@ input_field.addEventListener("input", function() {
 })
 
 
+let edit_budget_btn = document.querySelector('#edit-budget-btn')
+let budget_display = document.querySelector('#budget-display')
+let budget_input = document.querySelector('#budget-input')
+let save_budget_button = document.querySelector('#save-budget-button')
+
+function displayNetEarnings() {
+    let net_earnings = document.querySelector('#net-money')
+    let budget = parseFloat(budget_display.textContent.replace('Budget: $', ''))
+    let total_spent = parseFloat(document.querySelector('#total-spent').textContent.replace('Total spent: $', ''))
+    // parseFloat converts the string to a number for arithmetic
+    // .replace strips the label text, leaving just the number
+    let difference = budget - total_spent
+    net_earnings.textContent = `Net Money: $${difference.toFixed(2)}`
+    // .toFixed(2) formats to always show 2 decimal places
+    if (difference <= (budget * 0.05)) {
+        net_earnings.style.color = 'red'
+    } else {
+        net_earnings.style.color = 'black'
+    }
+}
+
+// hides display, shows input fields for editing
+edit_budget_btn.addEventListener('click', function(event) {
+    edit_budget_btn.style.display = "none"
+    budget_display.style.display = "none"
+    budget_input.style.display = 'inline'
+    save_budget_button.style.display = 'inline'
+})
+
+// sends new budget to Flask, updates display without reload
+save_budget_button.addEventListener('click', function(event) {
+
+    event.preventDefault()
+
+    let formData = new FormData()
+    formData.append('amount', budget_input.value)
+
+    fetch('/edit-budget', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            edit_budget_btn.style.display = "inline"
+            budget_input.style.display = 'none'
+            save_budget_button.style.display = 'none'
+            budget_display.style.display = "inline"
+            budget_display.textContent = `Budget: $${data.budget}`
+            displayNetEarnings()
+        }
+    })
+})
+
 let delete_buttons = document.querySelectorAll('.delete-form button')
 
+// reads budget and total from DOM, calculates and displays net money
 function attachDeleteListener(button) {
     button.addEventListener('click', function(event) {
         event.preventDefault()
@@ -26,7 +81,8 @@ function attachDeleteListener(button) {
         .then(data => {
             if (data.status === 'success') {
                 button.closest('tr').remove()
-                document.querySelector('.box').textContent = `Total spent: $${data.total_spent}`
+                document.querySelector('#total-spent').textContent = `Total spent: $${data.total_spent}`
+                displayNetEarnings()
                 console.log('Deleted successfully!')
             }
         })
@@ -72,11 +128,13 @@ add_button.addEventListener('click', function(event) {
             let new_delete_button = new_row.querySelector('button')
             attachDeleteListener(new_delete_button)
             document.querySelector('.box').textContent = `Total spent: $${data.total_spent}`
+            displayNetEarnings()
             console.log('added successfully')
         }
     })
 })
 
+displayNetEarnings()
 // delete_buttons.forEach(function(button) {
 //     button.addEventListener('click', function(event) { 
 //         event.preventDefault() // stops the form submitting normally

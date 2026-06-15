@@ -11,6 +11,7 @@ def get_db():
 
 errors=['You should have chosen a payment method...',
         'Amount spent should be more than 0']
+
 def init_db():
     conn = get_db()
     cursor = conn.cursor()
@@ -23,6 +24,11 @@ def init_db():
                 date TEXT NOT NULL
                    )
                    ''')
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS budget (
+                id INTEGER PRIMARY KEY,
+                amount REAL NOT NULL)''')
+    cursor.execute('INSERT OR IGNORE INTO budget (id, amount) VALUES (1, 0.00)')
     conn.commit()
     conn.close()
 
@@ -34,8 +40,21 @@ def index():
     all_expenses = cursor.fetchall()
     cursor.execute('SELECT SUM(amount) FROM expenses')
     total = round(cursor.fetchone()[0] or 0, 2)  # 'or 0' handles the case when table is empty
+    cursor.execute('SELECT amount FROM budget WHERE id = 1')
+    budget = round(cursor.fetchone()[0] or 0, 2)
     conn.close()
-    return render_template('index.html', expenses=all_expenses, total=total)
+    return render_template('index.html', expenses=all_expenses, total=total, budget=budget)
+
+@app.route('/edit-budget', methods=['POST'])
+def edit_budget():
+    amount = round(float(request.form['amount']), 2)
+    conn = get_db()
+    cursor = conn.cursor()
+    cursor.execute('UPDATE budget SET amount = ? WHERE id = 1', (amount,))
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'success',
+                    'budget': amount})
 
 @app.route('/add-expense', methods=['POST'])
 def add_expense():
@@ -80,7 +99,7 @@ def delete_expense(expense_id):
     cursor.execute('DELETE FROM expenses WHERE id = ?', (expense_id,))
     conn.commit()
     cursor.execute('SELECT sum(amount) FROM expenses')
-    new_total = round(cursor.fetchone()[0] or 0, 2)    
+    new_total = round(cursor.fetchone()[0] or 0, 2)
     conn.close()
     return jsonify({"status": "success", 'total_spent': new_total})
  
