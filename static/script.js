@@ -127,7 +127,7 @@ add_button.addEventListener('click', function(event) {
             table.appendChild(new_row) // inserts it at the bottom of the table
             let new_delete_button = new_row.querySelector('button')
             attachDeleteListener(new_delete_button)
-            document.querySelector('.box').textContent = `Total spent: $${data.total_spent}`
+            document.querySelector('#total-spent').textContent = `Total spent: $${data.total_spent}`
             displayNetEarnings()
             console.log('added successfully')
         }
