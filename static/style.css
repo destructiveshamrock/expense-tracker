@@ -148,3 +148,45 @@ tr:hover {
     display: block;         /* makes it sit on its own line */
     width: max-content;
 }
+
+@media (max-width: 600px) {
+    .add-form {
+        flex-direction: column;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .budget-section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 6px 8px;
+    }
+
+    .box {
+        display: block !important;
+        margin-bottom: 8px;
+    }
+
+    .link {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    th:last-child {
+        display: none;
+    }
+    td:last-child {
+        border: none;
+    }
+}
