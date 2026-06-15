@@ -40,7 +40,7 @@ p {
         margin-bottom: 30px;
     }
 
-@media (max-width: 600px) {         /* media query - applies styles only when 
+@media (max-width: 400px) {         /* media query - applies styles only when 
                                     screen is below a certain width */
     .add-form {
         flex-direction: column;
@@ -149,7 +149,7 @@ tr:hover {
     width: max-content;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .add-form {
         flex-direction: column;
     }
